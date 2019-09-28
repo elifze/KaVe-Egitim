@@ -1,0 +1,157 @@
+import numpy as np
+import pandas as pd #veritanimaverifiltreleme
+import matplotlib.pyplot as plt
+import requests
+import io
+import math
+
+np.random.seed(2019)
+
+
+
+def generate(mu = None, minval = 0, maxval = 5):
+    # Eger mu None ise, mu degeri minval ve maxval in ortalaması olsun
+    if mu == None:
+        mu == (minval + maxval) /2 #?
+
+    
+    # val ortalaması mu olan, standart sapması 1 olan normal dagilimdan rastgele sayi 
+    val = x 
+    #np.random.randn(3,5) #?
+    #dizi=np.random.uniform(0,1,4000)   # a=0, b=5 araliginda N=4000 deger)
+    
+    # Eger val, maxval'den buyukse veye minval'den kucukse, sayıyı tekrar uret
+    while x>5 or x<0 :
+        val = ... #?
+    return val
+
+df['mu'].std() 
+
+
+# 1 basarili , 0 basarisiz
+target = [... for i in range(100)] + [... for i in range(900)]
+
+
+social_skills = ...
+algorithm_knowledge = ...
+GPA = ...
+Age = ...
+
+datadict = {"social":social_skills, "algorithm":algorithm_knowledge, "gpa":GPA, "age":Age, "y":target} #sozlukolusturma
+data = pd.DataFrame.from_dict(datadict) #framehalinegetirdi
+
+data.head(7) #dataframedekiilk7veriyigetirdi
+
+data.tail(7) #dataframedekison7veriyigetirdi
+
+data.describe() #dataframedekiveriözelliklerinigetirdi
+
+data.to_csv("data.csv", index=False)
+
+import requests
+import io
+
+
+url = "https://raw.githubusercontent.com/uzay00/KaVe-Egitim/master/ARGE/Sorular/1-İseAlımRobotu/data.csv"
+s = requests.get(url).content
+data = pd.read_csv(io.StringIO(s.decode('utf-8')))
+
+ax = data[data.y == 1].plot.hist(bins=12, alpha=0.5)
+plt.title("Successful Candidates")
+
+ax = data[data.y == 0].plot.hist(bins=12, alpha=0.5) #y kolonu sifir ise basarisiz #?
+plt.title("Unsuccessful Candidates")
+
+
+plt.plot(data.algorithm_knowledge[:,1]) #?
+plt.plot(data.Age[:,3]) #?
+plt.xlabel("Knowledge in Algorithms")
+plt.ylabel("Age Category")
+plt.legend()
+
+data.head()
+
+# numpy e donustur   #M = numpy_array
+M = #ndarray(shape(1000, 4), dtype='int)
+#[1000,4]
+#[1000,1]
+#ndarray[rows,cloumns]
+
+# butun colonlar, son y kolonu haric
+X = M[1000,4]  #1000 satır ve 0,1,2,3,4 (butun) kolonlar #? veya M[100,:]
+y = M[1000,3]  #1000 satır ve 0,1,2,3 kolonlar 4 haric #?
+
+X
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+
+# her feature (kolon) normalize ediliyor
+scaler.fit(X)
+X = scaler.transform(X)
+X
+
+yeni_adaylar = np.array([[5, 5, 5, 5],
+                         [5, 5, 4, 4],
+                         [5, 5, 3, 3],
+                         [5, 5, 2, 2],
+                         [5, 5, 1, 1],
+                         [5, 5, 0, 0],
+                         [0, 0, 1, 1],
+                         [0, 0, 2, 2],
+                         [0, 0, 3, 3],
+                         [0, 0, 4, 4],
+                         [0, 0, 5, 5],
+                         [1, 2, 3, 4],
+                         [1, 1, 2, 3],
+                         [1, 2, 3, 4],
+                         [2, 2, 4, 4]])
+
+i = 0
+aday = yeni_adaylar[i].reshape(1,-1)
+aday = scaler.transform(aday)
+aday
+
+scaler.inverse_transform(aday)
+
+def ise_alim(yeni = 0, k = 5):
+    # Yeni aday matrisinden adaylari sec 
+    aday = yeni_adaylar[i].shape()
+    # Transfrom et
+    aday = ... transform(aday)
+    # X ile Farkini al
+    D = aday
+    # Farkin karesi
+    D2 = D**2
+    # Oklid mesafesini hesapla
+    mesafe = math.sqrt(sum(D2))
+    # Mesafeleri buyukten kucuge sirala, en kucuk k komsunun indeksi
+    k_komsu = mesafe.argsort()[:k]
+
+    if k_komsu: 
+        print(aday, ">> Kabul")
+    else:
+        print(aday, ">>red")
+        
+for i in range(yeni_adaylar.shape[0]):
+    ise_alim(yeni = i, k = 5)        
+
+# vektorunu kendi boyuna bolen anonim fonksiyon
+nomalize = lambda X: X/((X**...).sum(axis = ...).reshape(...,...))**...
+
+A = nomalize(yeni_adaylar)
+A
+
+C = nomalize(X)
+
+C
+
+# C matrisi ile A matrisinin vektör çarpımını al
+B = Cdot(A) #dotilematriscarpimi #np.dot(C,A)
+B
+
+alim = lambda a : "Kabul" if a else "Red"
+
+[(yeni_adaylar[i, :], alim(B) > 0.5)) for i in range(A.shape[0])]
+
+
